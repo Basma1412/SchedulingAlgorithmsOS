@@ -520,7 +520,7 @@ public class ProjectFrame extends javax.swing.JFrame {
             break;
 
             case "priority": {
-                String pri=prioritiesD.getText().toString();
+                String pri = prioritiesD.getText().toString();
                 String p_lines[] = pri.split("\\r?\\n");
                 for (int i = 0; i < p_lines.length; i++) {
                     String temp = p_lines[i];
@@ -556,6 +556,7 @@ public class ProjectFrame extends javax.swing.JFrame {
                         if (listl4.get(array_counter).process_burst_time > 0) {
                             listl3.add(listl4.get(array_counter));
                             listl4.get(array_counter).process_burst_time--;
+                            times.add(1);
                             if (listl4.get(array_counter).process_burst_time == 0) {
 
                                 Process x = listl4.get(array_counter);
@@ -574,7 +575,7 @@ public class ProjectFrame extends javax.swing.JFrame {
 
                         }
                     }
-
+                    processesList = listl3;
                 } else {
 
                     Process[] temp1 = new Process[processesNo];
@@ -631,12 +632,10 @@ public class ProjectFrame extends javax.swing.JFrame {
             break;
 
             case "SJF": {
-                
-                
-                
-              
 
                 if (p) {
+
+                    
 
                     int timer = 0;
                     List<Process> listl3 = new LinkedList<Process>();
@@ -647,7 +646,7 @@ public class ProjectFrame extends javax.swing.JFrame {
 
                     Operations.copy_process(processes, process_by_burst);
 
-                    Operations.sort_by_priority(process_by_burst);
+                    Operations.sort_by_burst_time(process_by_burst);
                     List<Process> listl4 = new LinkedList<Process>(Arrays.asList(process_by_burst));
                     int total_time = 0;
                     for (int i = 0; i < processesNo; i++) {
@@ -664,6 +663,7 @@ public class ProjectFrame extends javax.swing.JFrame {
                         if (listl4.get(array_counter).process_burst_time > 0) {
                             listl3.add(listl4.get(array_counter));
                             listl4.get(array_counter).process_burst_time--;
+                            times.add(1);
                             if (listl4.get(array_counter).process_burst_time == 0) {
 
                                 Process x = listl4.get(array_counter);
@@ -682,10 +682,9 @@ public class ProjectFrame extends javax.swing.JFrame {
 
                         }
                     }
+                    processesList = listl3;
 
-                } 
-                
-                else {
+                } else {
 
                     Process[] temp1 = new Process[processesNo];
                     Process[] temp2 = new Process[processesNo];
@@ -737,13 +736,17 @@ public class ProjectFrame extends javax.swing.JFrame {
 
                 }
 
-            
-                
-
             }
             break;
 
         }
+        int count = 0;
+
+        for (int i = 0; i < processes.length; i++) {
+            count += processes[i].get_waiting_time();
+        }
+        double avg_waiting_time = count / processes.length;
+        waitingT.setText(avg_waiting_time + "");
 
         drawGanttChartForPriorityScheduling(processesList, times);
     }//GEN-LAST:event_ConfirmBtnActionPerformed
