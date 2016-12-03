@@ -468,11 +468,11 @@ public class ProjectFrame extends javax.swing.JFrame {
         switch (schedular) {
             case "fcfs": {
                 Operations.sort_by_arrival_time(processes);
-                int sum = processes[0].get_burst_time();
+                int sum=0;
                 for (int i = 0; i < processesNo; i++) {
                     times.add(processes[i].process_burst_time);
-                    processes[i].process_waiting_time = sum - processes[i].get_arrival_time();
                     sum += processes[i].get_burst_time();
+                    processes[i].process_waiting_time =(sum - processes[i].get_arrival_time())-processes[i].get_burst_time();
                 }
                 processesList = new ArrayList<>(Arrays.asList(processes));
             }
@@ -740,7 +740,7 @@ public class ProjectFrame extends javax.swing.JFrame {
             break;
 
         }
-        int count = 0;
+        double count = 0;
 
         for (int i = 0; i < processes.length; i++) {
             count += processes[i].get_waiting_time();
