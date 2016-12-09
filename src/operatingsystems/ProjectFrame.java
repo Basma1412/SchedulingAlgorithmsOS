@@ -518,12 +518,11 @@ public class ProjectFrame extends javax.swing.JFrame {
 
                         if (j == processesNo) {
                             break;
-                        } 
-                        else {
+                        } else {
                             if (processes[j].get_arrival_time() <= timeline) {
                                 processesList.add(processes[j]);
                                 times.add(processes[j].process_burst_time);
-                                
+
                                 sum += processes[j].get_burst_time();
                                 processes[j].process_waiting_time = (sum - processes[j].get_arrival_time()) - processes[j].get_burst_time();
                                 timeline += processes[j].get_burst_time();
@@ -539,6 +538,168 @@ public class ProjectFrame extends javax.swing.JFrame {
                     }
                 }
                 break;
+
+                case "priority": {
+                    String pri = prioritiesD.getText().toString();
+                    String p_lines[] = pri.split("\\r?\\n");
+                    for (int i = 0; i < p_lines.length; i++) {
+                        String temp = p_lines[i];
+                        int pn = Integer.parseInt(temp);
+                        processes[i].set_piority(pn);
+                    }
+                    if (preemptive.isSelected()) {
+                        p = true;
+                    } else if (nonpreemptive.isSelected()) {
+                        p = false;
+                    }
+
+                    Process[] temp1 = new Process[processesNo];
+                    Process[] temp2 = new Process[processesNo];
+                    Process[] done = new Process[processesNo];
+
+                    Operations.copy_process(processes, temp1);
+                    Operations.copy_process(processes, temp2);
+                    Operations.sort_by_arrival_time(temp1);
+                    Operations.sort_by_priority(temp2);
+
+                    int current_time = 0;
+                    int burst = 0;
+                    int arrival = 0;
+                    int j = 0;
+                    int timeline = 0;
+                    processesList = new ArrayList<>();
+                    while (true) {
+
+                        if (j == processesNo) {
+                            break;
+                        }
+                        if (burst < processesNo) {
+                            if (Operations.p_exists(done, temp2[burst])) {
+                                burst++;
+                            }
+                            if ((!Operations.p_exists(done, temp2[burst])) && temp2[burst].get_arrival_time() <= current_time) {
+                                done[j] = temp2[burst];
+                                processesList.add(done[j]);
+                                current_time += temp2[burst].get_burst_time();
+                                times.add(temp2[burst].get_burst_time());
+                                for (int k = 0; k < processesNo; k++) {
+                                    if (processes[k].process_no == done[j].process_no) {
+                                        processes[k].process_waiting_time = current_time - processes[k].process_burst_time-processes[k].process_arrival_time;
+                                    }
+                                }
+                                burst++;
+                                j++;
+                            } else {
+                                while ((arrival < processesNo) && Operations.p_exists(done, temp1[arrival])) {
+                                    arrival++;
+                                }
+                                if (!Operations.p_exists(done, temp1[arrival]) && temp1[arrival].get_arrival_time() <= current_time) {
+                                    done[j] = temp1[arrival];
+                                    processesList.add(done[j]);
+
+                                    current_time += temp1[arrival].get_burst_time();
+                                    times.add(temp1[burst].get_burst_time());
+                                    for (int k = 0; k < processesNo; k++) {
+                                        if (processes[k].process_no == done[j].process_no) {
+                                            processes[k].process_waiting_time = current_time - processes[k].process_burst_time-processes[k].process_arrival_time;
+                                        }
+                                    }
+                                    arrival++;
+                                    j++;
+                                } else {
+
+                                    processesList.add(empty);
+                                    timeline++;
+                                    times.add(1);
+                                    current_time++;
+                                }
+
+                            }
+                        }
+                    }
+
+                }
+                break;
+
+                case "SJF": {
+
+                    if (preemptive.isSelected()) {
+                        p = true;
+                    } else if (nonpreemptive.isSelected()) {
+                        p = false;
+                    }
+
+                    Process[] temp1 = new Process[processesNo];
+                    Process[] temp2 = new Process[processesNo];
+                    Process[] done = new Process[processesNo];
+
+                    Operations.copy_process(processes, temp1);
+                    Operations.copy_process(processes, temp2);
+                    Operations.sort_by_arrival_time(temp1);
+                    Operations.sort_by_burst_time(temp2);
+
+                    int current_time = 0;
+                    int burst = 0;
+                    int arrival = 0;
+                    int j = 0;
+                    int timeline = 0;
+                    processesList = new ArrayList<>();
+                    while (true) {
+
+                        if (j == processesNo) {
+                            break;
+                        }
+
+                        if (burst < processesNo) {
+                            if (Operations.p_exists(done, temp2[burst])) {
+                                burst++;
+                            }
+                            if ((!Operations.p_exists(done, temp2[burst])) && temp2[burst].get_arrival_time() <= current_time) {
+                                done[j] = temp2[burst];
+                                processesList.add(done[j]);
+
+                                current_time += temp2[burst].get_burst_time();
+                                times.add(temp2[burst].get_burst_time());
+                                for (int k = 0; k < processesNo; k++) {
+                                    if (processes[k].process_no == done[j].process_no) {
+                                        processes[k].process_waiting_time = current_time - processes[k].process_burst_time- processes[k].process_arrival_time;
+                                    }
+                                }
+                                burst++;
+                           j++;
+                            } else {
+                                while ((arrival < processesNo) && Operations.p_exists(done, temp1[arrival])) {
+                                    arrival++;
+                                }
+                                if (!Operations.p_exists(done, temp1[arrival])&& temp1[arrival].get_arrival_time() <= current_time) {
+                                    done[j] = temp1[arrival];
+                                    processesList.add(done[j]);
+
+                                    current_time += temp1[arrival].get_burst_time();
+                                    times.add(temp1[burst].get_burst_time());
+                                    for (int k = 0; k < processesNo; k++) {
+                                        if (processes[k].process_no == done[j].process_no) {
+                                            processes[k].process_waiting_time = current_time - processes[k].process_burst_time-processes[k].process_arrival_time;
+                                        }
+                                    }
+                                    arrival++;
+                                    j++;
+                                }
+                                 else {
+
+                                    processesList.add(empty);
+                                    timeline++;
+                                    times.add(1);
+                                    current_time++;
+                                }
+
+                            }
+                        }
+                    }
+
+                }
+                break;
+
             }
 
         } else {
@@ -827,7 +988,7 @@ public class ProjectFrame extends javax.swing.JFrame {
 
             }
         }
-        
+
         double count = 0;
 
         for (int i = 0; i < processes.length; i++) {
