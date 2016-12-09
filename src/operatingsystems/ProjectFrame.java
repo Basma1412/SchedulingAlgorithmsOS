@@ -292,6 +292,10 @@ public class ProjectFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         prioritiesD = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        gaps = new javax.swing.JRadioButton();
+        nogaps = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -325,7 +329,7 @@ public class ProjectFrame extends javax.swing.JFrame {
 
         jLabel10.setText("Waiting Time :");
 
-        waitingT.setText("wt");
+        waitingT.setText("....");
 
         data.setColumns(20);
         data.setRows(5);
@@ -337,6 +341,16 @@ public class ProjectFrame extends javax.swing.JFrame {
         prioritiesD.setRows(5);
         jScrollPane1.setViewportView(prioritiesD);
 
+        jLabel6.setFont(new java.awt.Font("Sitka Small", 3, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel6.setText("CPU Scheduling Algorithms");
+
+        jLabel7.setText("Have Gaps");
+
+        gaps.setText("Yes");
+
+        nogaps.setText("No");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -345,75 +359,107 @@ public class ProjectFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(ConfirmBtn))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(121, 121, 121)
+                                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(jLabel3)
+                                                            .addComponent(jLabel1))
+                                                        .addGap(18, 18, 18)
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(schedularType, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(processes_no, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(jLabel4))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(jLabel7)
+                                                .addGap(35, 35, 35)))
+                                        .addComponent(gaps)))
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel2)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(preemptive))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel8)
+                                            .addGap(37, 37, 37)
+                                            .addComponent(quantumTime, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(11, 11, 11)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(nogaps))
+                                        .addGap(60, 60, 60)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(1, 1, 1)
+                        .addComponent(nonpreemptive)
+                        .addGap(135, 135, 135))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addComponent(jLabel10)
-                        .addGap(43, 43, 43)
-                        .addComponent(waitingT))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(processes_no, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(ConfirmBtn))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(80, 80, 80)
-                                            .addComponent(jLabel5)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(80, 80, 80)
-                                    .addComponent(jLabel8)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(quantumTime, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addComponent(schedularType, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(129, 129, 129)
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(preemptive)
-                            .addGap(27, 27, 27)
-                            .addComponent(nonpreemptive))))
-                .addContainerGap(79, Short.MAX_VALUE))
+                        .addGap(41, 41, 41)
+                        .addComponent(waitingT)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(schedularType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(preemptive)
-                    .addComponent(nonpreemptive))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(processes_no, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(quantumTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                    .addComponent(jLabel5)
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(gaps)
+                            .addComponent(nogaps, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(151, 151, 151)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(processes_no, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel8)
+                                    .addComponent(quantumTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(92, 92, 92)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(schedularType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(preemptive)
+                                    .addComponent(nonpreemptive))))
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)))
                 .addComponent(ConfirmBtn)
-                .addGap(28, 28, 28)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(waitingT))
-                .addGap(139, 139, 139))
+                .addGap(162, 162, 162))
         );
 
         pack();
@@ -441,14 +487,8 @@ public class ProjectFrame extends javax.swing.JFrame {
         String schedular = schedularType.getText().toString();
         String num = processes_no.getText().toString();
         int processesNo = Integer.parseInt(num);
-        int quantum = Integer.parseInt(quantumTime.getText().toString());
         times = new ArrayList<>();
         boolean p = false;
-        if (preemptive.isSelected()) {
-            p = true;
-        } else if (nonpreemptive.isSelected()) {
-            p = false;
-        }
         Process[] processes = new Process[processesNo];
         String pdata = data.getText().toString();
         String lines[] = pdata.split("\\r?\\n");
@@ -465,281 +505,329 @@ public class ProjectFrame extends javax.swing.JFrame {
             processes[i] = new Process(pn, pa, pb);
         }
 
-        switch (schedular) {
-            case "fcfs": {
-                Operations.sort_by_arrival_time(processes);
-                int sum=0;
-                for (int i = 0; i < processesNo; i++) {
-                    times.add(processes[i].process_burst_time);
-                    sum += processes[i].get_burst_time();
-                    processes[i].process_waiting_time =(sum - processes[i].get_arrival_time())-processes[i].get_burst_time();
+        if (gaps.isSelected()) {
+            Process empty = new Process(-1, -1, -1);
+            switch (schedular) {
+                case "fcfs": {
+                    Operations.sort_by_arrival_time(processes);
+                    int sum = 0;
+                    int j = 0;
+                    int timeline = 0;
+                    processesList = new ArrayList<>();
+                    while (true) {
+
+                        if (j == processesNo) {
+                            break;
+                        } 
+                        else {
+                            if (processes[j].get_arrival_time() <= timeline) {
+                                processesList.add(processes[j]);
+                                times.add(processes[j].process_burst_time);
+                                
+                                sum += processes[j].get_burst_time();
+                                processes[j].process_waiting_time = (sum - processes[j].get_arrival_time()) - processes[j].get_burst_time();
+                                timeline += processes[j].get_burst_time();
+                                j++;
+                            } else {
+                                processesList.add(empty);
+                                timeline++;
+                                times.add(1);
+                                sum++;
+                            }
+                        }
+
+                    }
                 }
-                processesList = new ArrayList<>(Arrays.asList(processes));
+                break;
             }
-            break;
 
-            case "round-robin": {
-
-                int q = 0;
-                int total_time = 0;
-                processesList = new ArrayList<>();
-                for (int i = 0; i < processesNo; i++) {
-                    total_time += processes[i].get_burst_time();
+        } else {
+            switch (schedular) {
+                case "fcfs": {
+                    Operations.sort_by_arrival_time(processes);
+                    int sum = 0;
+                    for (int i = 0; i < processesNo; i++) {
+                        times.add(processes[i].process_burst_time);
+                        sum += processes[i].get_burst_time();
+                        processes[i].process_waiting_time = (sum - processes[i].get_arrival_time()) - processes[i].get_burst_time();
+                    }
+                    processesList = new ArrayList<>(Arrays.asList(processes));
                 }
-                Process[] pro = new Process[processesNo];
-                Operations.copy_process(processes, pro);
+                break;
 
-                int i = 0;
+                case "round-robin": {
 
-                while (q < total_time) {
-                    if (pro[i].process_burstRobin > 0) {
-                        processesList.add(pro[i]);
+                    int quantum = Integer.parseInt(quantumTime.getText().toString());
+                    int q = 0;
+                    int total_time = 0;
+                    processesList = new ArrayList<>();
+                    for (int i = 0; i < processesNo; i++) {
+                        total_time += processes[i].get_burst_time();
+                    }
+                    Process[] pro = new Process[processesNo];
+                    Operations.copy_process(processes, pro);
 
-                        if (pro[i].process_burstRobin > quantum) {
-                            pro[i].process_burstRobin -= quantum;
-                            q += quantum;
-                            times.add(quantum);
-                            if (pro[i].process_burstRobin == 0) {
+                    int i = 0;
+
+                    while (q < total_time) {
+                        if (pro[i].process_burstRobin > 0) {
+                            processesList.add(pro[i]);
+
+                            if (pro[i].process_burstRobin > quantum) {
+                                pro[i].process_burstRobin -= quantum;
+                                q += quantum;
+                                times.add(quantum);
+                                if (pro[i].process_burstRobin == 0) {
+                                    pro[i].process_waiting_time = q - pro[i].process_burst_time;
+                                }
+                            } else {
+                                q += pro[i].process_burstRobin;
+
+                                times.add(pro[i].process_burstRobin);
+                                pro[i].process_burstRobin = 0;
                                 pro[i].process_waiting_time = q - pro[i].process_burst_time;
                             }
-                        } else {
-                            q += pro[i].process_burstRobin;
 
-                            times.add(pro[i].process_burstRobin);
-                            pro[i].process_burstRobin = 0;
-                            pro[i].process_waiting_time = q - pro[i].process_burst_time;
                         }
-
-                    }
-                    i++;
-                    if (i == (processesNo)) {
-                        i = 0;
+                        i++;
+                        if (i == (processesNo)) {
+                            i = 0;
+                        }
                     }
                 }
-            }
-            break;
+                break;
 
-            case "priority": {
-                String pri = prioritiesD.getText().toString();
-                String p_lines[] = pri.split("\\r?\\n");
-                for (int i = 0; i < p_lines.length; i++) {
-                    String temp = p_lines[i];
-                    int pn = Integer.parseInt(temp);
-                    processes[i].set_piority(pn);
-                }
-
-                if (p) {
-
-                    int timer = 0;
-                    List<Process> listl3 = new LinkedList<Process>();
-
-                    Process[] process_by_arrival = new Process[processesNo];
-                    Process[] process_by_burst = new Process[processesNo];
-                    int[] bursts = new int[processesNo];
-
-                    Operations.copy_process(processes, process_by_burst);
-
-                    Operations.sort_by_priority(process_by_burst);
-                    List<Process> listl4 = new LinkedList<Process>(Arrays.asList(process_by_burst));
-                    int total_time = 0;
-                    for (int i = 0; i < processesNo; i++) {
-                        bursts[i] = processes[i].get_burst_time();
-                        total_time += processes[i].get_burst_time();
+                case "priority": {
+                    String pri = prioritiesD.getText().toString();
+                    String p_lines[] = pri.split("\\r?\\n");
+                    for (int i = 0; i < p_lines.length; i++) {
+                        String temp = p_lines[i];
+                        int pn = Integer.parseInt(temp);
+                        processes[i].set_piority(pn);
+                    }
+                    if (preemptive.isSelected()) {
+                        p = true;
+                    } else if (nonpreemptive.isSelected()) {
+                        p = false;
                     }
 
-                    while (timer < total_time) {
-                        int array_counter = 0;
-                        while (listl4.get(array_counter).process_arrival_time > timer) {
-                            array_counter++;
+                    if (p) {
+
+                        int timer = 0;
+                        List<Process> listl3 = new LinkedList<Process>();
+
+                        Process[] process_by_arrival = new Process[processesNo];
+                        Process[] process_by_burst = new Process[processesNo];
+                        int[] bursts = new int[processesNo];
+
+                        Operations.copy_process(processes, process_by_burst);
+
+                        Operations.sort_by_priority(process_by_burst);
+                        List<Process> listl4 = new LinkedList<Process>(Arrays.asList(process_by_burst));
+                        int total_time = 0;
+                        for (int i = 0; i < processesNo; i++) {
+                            bursts[i] = processes[i].get_burst_time();
+                            total_time += processes[i].get_burst_time();
                         }
 
-                        if (listl4.get(array_counter).process_burst_time > 0) {
-                            listl3.add(listl4.get(array_counter));
-                            listl4.get(array_counter).process_burst_time--;
-                            times.add(1);
-                            if (listl4.get(array_counter).process_burst_time == 0) {
+                        while (timer < total_time) {
+                            int array_counter = 0;
+                            while (listl4.get(array_counter).process_arrival_time > timer) {
+                                array_counter++;
+                            }
 
-                                Process x = listl4.get(array_counter);
-                                for (int i = 0; i < processesNo; i++) {
-                                    if (processes[i].process_no == x.process_no) {
-                                        processes[i].process_waiting_time = timer - processes[i].process_burst_time;
+                            if (listl4.get(array_counter).process_burst_time > 0) {
+                                listl3.add(listl4.get(array_counter));
+                                listl4.get(array_counter).process_burst_time--;
+                                times.add(1);
+                                if (listl4.get(array_counter).process_burst_time == 0) {
+
+                                    Process x = listl4.get(array_counter);
+                                    for (int i = 0; i < processesNo; i++) {
+                                        if (processes[i].process_no == x.process_no) {
+                                            processes[i].process_waiting_time = timer - processes[i].process_burst_time;
+                                        }
                                     }
+                                    boolean e = listl4.contains(x);
+                                    if (e) {
+                                        listl4.remove(x);
+                                    }
+
                                 }
-                                boolean e = listl4.contains(x);
-                                if (e) {
-                                    listl4.remove(x);
-                                }
+                                timer++;
 
                             }
-                            timer++;
-
                         }
-                    }
-                    processesList = listl3;
-                } else {
+                        processesList = listl3;
+                    } else {
 
-                    Process[] temp1 = new Process[processesNo];
-                    Process[] temp2 = new Process[processesNo];
-                    Process[] done = new Process[processesNo];
+                        Process[] temp1 = new Process[processesNo];
+                        Process[] temp2 = new Process[processesNo];
+                        Process[] done = new Process[processesNo];
 
-                    Operations.copy_process(processes, temp1);
-                    Operations.copy_process(processes, temp2);
-                    Operations.sort_by_arrival_time(temp1);
-                    Operations.sort_by_priority(temp2);
+                        Operations.copy_process(processes, temp1);
+                        Operations.copy_process(processes, temp2);
+                        Operations.sort_by_arrival_time(temp1);
+                        Operations.sort_by_priority(temp2);
 
-                    int current_time = 0;
-                    int burst = 0;
-                    int arrival = 0;
-                    for (int i = 0; i < processesNo; i++) {
-                        if (burst < processesNo) {
-                            if (Operations.p_exists(done, temp2[burst])) {
-                                burst++;
-                            }
-                            if ((!Operations.p_exists(done, temp2[burst])) && temp2[burst].get_arrival_time() <= current_time) {
-                                done[i] = temp2[burst];
-                                current_time += temp2[burst].get_burst_time();
-                                times.add(temp2[burst].get_burst_time());
-                                for (int k = 0; k < processesNo; k++) {
-                                    if (processes[k].process_no == done[i].process_no) {
-                                        processes[k].process_waiting_time = current_time - processes[k].process_burst_time;
-                                    }
+                        int current_time = 0;
+                        int burst = 0;
+                        int arrival = 0;
+                        for (int i = 0; i < processesNo; i++) {
+                            if (burst < processesNo) {
+                                if (Operations.p_exists(done, temp2[burst])) {
+                                    burst++;
                                 }
-                                burst++;
-                            } else {
-                                while ((arrival < processesNo) && Operations.p_exists(done, temp1[arrival])) {
-                                    arrival++;
-                                }
-                                if (!Operations.p_exists(done, temp1[arrival])) {
-                                    done[i] = temp1[arrival];
-                                    current_time += temp1[arrival].get_burst_time();
-                                    times.add(temp1[burst].get_burst_time());
+                                if ((!Operations.p_exists(done, temp2[burst])) && temp2[burst].get_arrival_time() <= current_time) {
+                                    done[i] = temp2[burst];
+                                    current_time += temp2[burst].get_burst_time();
+                                    times.add(temp2[burst].get_burst_time());
                                     for (int k = 0; k < processesNo; k++) {
                                         if (processes[k].process_no == done[i].process_no) {
                                             processes[k].process_waiting_time = current_time - processes[k].process_burst_time;
                                         }
                                     }
-                                    arrival++;
-                                }
+                                    burst++;
+                                } else {
+                                    while ((arrival < processesNo) && Operations.p_exists(done, temp1[arrival])) {
+                                        arrival++;
+                                    }
+                                    if (!Operations.p_exists(done, temp1[arrival])) {
+                                        done[i] = temp1[arrival];
+                                        current_time += temp1[arrival].get_burst_time();
+                                        times.add(temp1[burst].get_burst_time());
+                                        for (int k = 0; k < processesNo; k++) {
+                                            if (processes[k].process_no == done[i].process_no) {
+                                                processes[k].process_waiting_time = current_time - processes[k].process_burst_time;
+                                            }
+                                        }
+                                        arrival++;
+                                    }
 
+                                }
                             }
                         }
+                        processesList = new ArrayList<>(Arrays.asList(done));
+
                     }
-                    processesList = new ArrayList<>(Arrays.asList(done));
 
                 }
+                break;
 
-            }
-            break;
+                case "SJF": {
 
-            case "SJF": {
-
-                if (p) {
-
-                    
-
-                    int timer = 0;
-                    List<Process> listl3 = new LinkedList<Process>();
-
-                    Process[] process_by_arrival = new Process[processesNo];
-                    Process[] process_by_burst = new Process[processesNo];
-                    int[] bursts = new int[processesNo];
-
-                    Operations.copy_process(processes, process_by_burst);
-
-                    Operations.sort_by_burst_time(process_by_burst);
-                    List<Process> listl4 = new LinkedList<Process>(Arrays.asList(process_by_burst));
-                    int total_time = 0;
-                    for (int i = 0; i < processesNo; i++) {
-                        bursts[i] = processes[i].get_burst_time();
-                        total_time += processes[i].get_burst_time();
+                    if (preemptive.isSelected()) {
+                        p = true;
+                    } else if (nonpreemptive.isSelected()) {
+                        p = false;
                     }
+                    if (p) {
 
-                    while (timer < total_time) {
-                        int array_counter = 0;
-                        while (listl4.get(array_counter).process_arrival_time > timer) {
-                            array_counter++;
+                        int timer = 0;
+                        List<Process> listl3 = new LinkedList<Process>();
+
+                        Process[] process_by_arrival = new Process[processesNo];
+                        Process[] process_by_burst = new Process[processesNo];
+                        int[] bursts = new int[processesNo];
+
+                        Operations.copy_process(processes, process_by_burst);
+
+                        Operations.sort_by_burst_time(process_by_burst);
+                        List<Process> listl4 = new LinkedList<Process>(Arrays.asList(process_by_burst));
+                        int total_time = 0;
+                        for (int i = 0; i < processesNo; i++) {
+                            bursts[i] = processes[i].get_burst_time();
+                            total_time += processes[i].get_burst_time();
                         }
 
-                        if (listl4.get(array_counter).process_burst_time > 0) {
-                            listl3.add(listl4.get(array_counter));
-                            listl4.get(array_counter).process_burst_time--;
-                            times.add(1);
-                            if (listl4.get(array_counter).process_burst_time == 0) {
+                        while (timer < total_time) {
+                            int array_counter = 0;
+                            while (listl4.get(array_counter).process_arrival_time > timer) {
+                                array_counter++;
+                            }
 
-                                Process x = listl4.get(array_counter);
-                                for (int i = 0; i < processesNo; i++) {
-                                    if (processes[i].process_no == x.process_no) {
-                                        processes[i].process_waiting_time = timer - processes[i].process_burst_time;
+                            if (listl4.get(array_counter).process_burst_time > 0) {
+                                listl3.add(listl4.get(array_counter));
+                                listl4.get(array_counter).process_burst_time--;
+                                times.add(1);
+                                if (listl4.get(array_counter).process_burst_time == 0) {
+
+                                    Process x = listl4.get(array_counter);
+                                    for (int i = 0; i < processesNo; i++) {
+                                        if (processes[i].process_no == x.process_no) {
+                                            processes[i].process_waiting_time = timer - processes[i].process_burst_time;
+                                        }
                                     }
+                                    boolean e = listl4.contains(x);
+                                    if (e) {
+                                        listl4.remove(x);
+                                    }
+
                                 }
-                                boolean e = listl4.contains(x);
-                                if (e) {
-                                    listl4.remove(x);
-                                }
+                                timer++;
 
                             }
-                            timer++;
-
                         }
-                    }
-                    processesList = listl3;
+                        processesList = listl3;
 
-                } else {
+                    } else {
 
-                    Process[] temp1 = new Process[processesNo];
-                    Process[] temp2 = new Process[processesNo];
-                    Process[] done = new Process[processesNo];
+                        Process[] temp1 = new Process[processesNo];
+                        Process[] temp2 = new Process[processesNo];
+                        Process[] done = new Process[processesNo];
 
-                    Operations.copy_process(processes, temp1);
-                    Operations.copy_process(processes, temp2);
-                    Operations.sort_by_arrival_time(temp1);
-                    Operations.sort_by_burst_time(temp2);
+                        Operations.copy_process(processes, temp1);
+                        Operations.copy_process(processes, temp2);
+                        Operations.sort_by_arrival_time(temp1);
+                        Operations.sort_by_burst_time(temp2);
 
-                    int current_time = 0;
-                    int burst = 0;
-                    int arrival = 0;
-                    for (int i = 0; i < processesNo; i++) {
-                        if (burst < processesNo) {
-                            if (Operations.p_exists(done, temp2[burst])) {
-                                burst++;
-                            }
-                            if ((!Operations.p_exists(done, temp2[burst])) && temp2[burst].get_arrival_time() <= current_time) {
-                                done[i] = temp2[burst];
-                                current_time += temp2[burst].get_burst_time();
-                                times.add(temp2[burst].get_burst_time());
-                                for (int k = 0; k < processesNo; k++) {
-                                    if (processes[k].process_no == done[i].process_no) {
-                                        processes[k].process_waiting_time = current_time - processes[k].process_burst_time;
-                                    }
+                        int current_time = 0;
+                        int burst = 0;
+                        int arrival = 0;
+                        for (int i = 0; i < processesNo; i++) {
+                            if (burst < processesNo) {
+                                if (Operations.p_exists(done, temp2[burst])) {
+                                    burst++;
                                 }
-                                burst++;
-                            } else {
-                                while ((arrival < processesNo) && Operations.p_exists(done, temp1[arrival])) {
-                                    arrival++;
-                                }
-                                if (!Operations.p_exists(done, temp1[arrival])) {
-                                    done[i] = temp1[arrival];
-                                    current_time += temp1[arrival].get_burst_time();
-                                    times.add(temp1[burst].get_burst_time());
+                                if ((!Operations.p_exists(done, temp2[burst])) && temp2[burst].get_arrival_time() <= current_time) {
+                                    done[i] = temp2[burst];
+                                    current_time += temp2[burst].get_burst_time();
+                                    times.add(temp2[burst].get_burst_time());
                                     for (int k = 0; k < processesNo; k++) {
                                         if (processes[k].process_no == done[i].process_no) {
                                             processes[k].process_waiting_time = current_time - processes[k].process_burst_time;
                                         }
                                     }
-                                    arrival++;
-                                }
+                                    burst++;
+                                } else {
+                                    while ((arrival < processesNo) && Operations.p_exists(done, temp1[arrival])) {
+                                        arrival++;
+                                    }
+                                    if (!Operations.p_exists(done, temp1[arrival])) {
+                                        done[i] = temp1[arrival];
+                                        current_time += temp1[arrival].get_burst_time();
+                                        times.add(temp1[burst].get_burst_time());
+                                        for (int k = 0; k < processesNo; k++) {
+                                            if (processes[k].process_no == done[i].process_no) {
+                                                processes[k].process_waiting_time = current_time - processes[k].process_burst_time;
+                                            }
+                                        }
+                                        arrival++;
+                                    }
 
+                                }
                             }
                         }
+                        processesList = new ArrayList<>(Arrays.asList(done));
+
                     }
-                    processesList = new ArrayList<>(Arrays.asList(done));
 
                 }
+                break;
 
             }
-            break;
-
         }
+        
         double count = 0;
 
         for (int i = 0; i < processes.length; i++) {
@@ -763,15 +851,19 @@ public class ProjectFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ConfirmBtn;
     private javax.swing.JTextArea data;
+    private javax.swing.JRadioButton gaps;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JRadioButton nogaps;
     private javax.swing.JRadioButton nonpreemptive;
     private javax.swing.JRadioButton preemptive;
     private javax.swing.JTextArea prioritiesD;
@@ -813,7 +905,13 @@ class FrameForPriorityScheduling extends JFrame {
         for (int j = 0; j < processesList.size(); j++) {
             g = this.getContentPane().getGraphics();
             g.drawRect(leftStart, 50, 50, 50);
-            g.drawString("P" + (processesList.get(j).process_no), leftStart + 5, 50 + 50);
+            int p_number = processesList.get(j).process_no;
+            if (p_number == -1) {
+                g.drawString("N/P", leftStart + 5, 50 + 50);
+
+            } else {
+                g.drawString("P" + (p_number), leftStart + 5, 50 + 50);
+            }
             leftStart += 50;
             currentTime += times.get(j);
             g.drawString("" + currentTime, leftStart, 50 + 50 + 20);
