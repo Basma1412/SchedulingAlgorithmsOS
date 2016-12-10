@@ -552,14 +552,17 @@ public class ProjectFrame extends javax.swing.JFrame {
                 }
                 break;
 
-                case "priority": {
+             
+                case "priority":{
 
-                    if (preemptive.isSelected()) {
-                        p = true;
-                    } else if (nonpreemptive.isSelected()) {
-                        p = false;
+
+                      String pri = prioritiesD.getText().toString();
+                    String p_lines[] = pri.split("\\r?\\n");
+                    for (int i = 0; i < p_lines.length; i++) {
+                        String temp = p_lines[i];
+                        int pn = Integer.parseInt(temp);
+                        processes[i].set_piority(pn);
                     }
-
                     Process[] temp1 = new Process[processesNo];
                     Process[] temp2 = new Process[processesNo];
                     Process[] done = new Process[processesNo];
@@ -589,8 +592,9 @@ public class ProjectFrame extends javax.swing.JFrame {
                                 done[j] = temp2[burst];
                                 processesList.add(done[j]);
 
+                                        times.add(done[j].process_burst_time);
                                 current_time += temp2[burst].get_burst_time();
-                                times.add(temp2[burst].get_burst_time());
+                                
                                 for (int k = 0; k < processesNo; k++) {
                                     if (processes[k].process_no == done[j].process_no) {
                                         processes[k].process_waiting_time = current_time - processes[k].process_burst_time - processes[k].process_arrival_time;
@@ -602,12 +606,22 @@ public class ProjectFrame extends javax.swing.JFrame {
                                 while ((arrival < processesNo) && Operations.p_exists(done, temp1[arrival])) {
                                     arrival++;
                                 }
+                                for (int zz=arrival;zz<temp1.length;zz++)
+                                {
+                                    if (temp1[zz].process_arrival_time>current_time)
+                                        break;
+                                    else 
+                                    {
+                                        if (temp1[zz].process_priority<temp1[arrival].process_priority)
+                                            arrival=zz;
+                                    }
+                                }
                                 if (!Operations.p_exists(done, temp1[arrival]) && temp1[arrival].get_arrival_time() <= current_time) {
                                     done[j] = temp1[arrival];
                                     processesList.add(done[j]);
-
+                                        times.add(done[j].process_burst_time);
                                     current_time += temp1[arrival].get_burst_time();
-                                    times.add(temp1[burst].get_burst_time());
+                                   
                                     for (int k = 0; k < processesNo; k++) {
                                         if (processes[k].process_no == done[j].process_no) {
                                             processes[k].process_waiting_time = current_time - processes[k].process_burst_time - processes[k].process_arrival_time;
@@ -629,7 +643,6 @@ public class ProjectFrame extends javax.swing.JFrame {
 
                 }
                 break;
-
                 case "SJF": {
 
                     if (preemptive.isSelected()) {
