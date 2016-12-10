@@ -552,6 +552,60 @@ public class ProjectFrame extends javax.swing.JFrame {
                 }
                 break;
 
+                    
+                    
+                case "round-robin": {
+
+                    int quantum = Integer.parseInt(quantumTime.getText().toString());
+                    int q = 0;
+                    processesList = new ArrayList<>();
+                    processesList.add(empty);
+                    times.add(1);
+                    Process[] pro = new Process[processesNo];
+                    Operations.copy_process(processes, pro);
+
+                    int i = 0;
+                    int t_now=0;
+                    while (true) {
+                        
+                        boolean fin=true;
+                        for (Process pro1 : pro) {
+                            if (pro1.process_burstRobin > 0) {
+                                fin =false;
+                            }
+                        }
+                        if (fin)
+                            break;
+                        
+                        if (pro[i].process_burstRobin > 0&&pro[i].process_arrival_time<=t_now) {
+                            processesList.add(pro[i]);
+
+                            if (pro[i].process_burstRobin > quantum) {
+                                pro[i].process_burstRobin -= quantum;
+                                q += quantum;
+                                times.add(quantum);
+                                if (pro[i].process_burstRobin == 0) {
+                                    pro[i].process_waiting_time = q - pro[i].process_burst_time;
+                                }
+                            } else {
+                                q += pro[i].process_burstRobin;
+
+                                times.add(pro[i].process_burstRobin);
+                                pro[i].process_burstRobin = 0;
+                                pro[i].process_waiting_time = q - pro[i].process_burst_time;
+                            }
+
+                        }
+                      
+                        t_now++;
+                        i++;
+                        if (i == (processesNo)) {
+                            i = 0;
+                        }
+                    }
+                }
+                break;
+                    
 
                 case "priority":{
 
