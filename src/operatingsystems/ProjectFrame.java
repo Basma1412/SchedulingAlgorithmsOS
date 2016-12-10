@@ -117,6 +117,19 @@ class Process {
 }
 
 class Operations {
+    
+    
+       public static void sort_list_by_burst_time( List<Process> p) {
+
+        for (int i = 0; i < p.size() - 1; i++) {
+            for (int j = (i + 1); j < (p.size()); j++) {
+                if (p.get(j).process_burst_time < p.get(i).process_burst_time) {
+                    Process temp = p.get(i);
+                    p.set(i, p.get(j));
+                    p.set(j, temp);
+                }
+            }
+        }}
 
     public static void sort_by_arrival_time(Process[] p) {
         for (int i = 0; i < p.length - 1; i++) {
@@ -540,13 +553,7 @@ public class ProjectFrame extends javax.swing.JFrame {
                 break;
 
                 case "priority": {
-                    String pri = prioritiesD.getText().toString();
-                    String p_lines[] = pri.split("\\r?\\n");
-                    for (int i = 0; i < p_lines.length; i++) {
-                        String temp = p_lines[i];
-                        int pn = Integer.parseInt(temp);
-                        processes[i].set_piority(pn);
-                    }
+
                     if (preemptive.isSelected()) {
                         p = true;
                     } else if (nonpreemptive.isSelected()) {
@@ -573,6 +580,7 @@ public class ProjectFrame extends javax.swing.JFrame {
                         if (j == processesNo) {
                             break;
                         }
+
                         if (burst < processesNo) {
                             if (Operations.p_exists(done, temp2[burst])) {
                                 burst++;
@@ -580,11 +588,12 @@ public class ProjectFrame extends javax.swing.JFrame {
                             if ((!Operations.p_exists(done, temp2[burst])) && temp2[burst].get_arrival_time() <= current_time) {
                                 done[j] = temp2[burst];
                                 processesList.add(done[j]);
+
                                 current_time += temp2[burst].get_burst_time();
                                 times.add(temp2[burst].get_burst_time());
                                 for (int k = 0; k < processesNo; k++) {
                                     if (processes[k].process_no == done[j].process_no) {
-                                        processes[k].process_waiting_time = current_time - processes[k].process_burst_time-processes[k].process_arrival_time;
+                                        processes[k].process_waiting_time = current_time - processes[k].process_burst_time - processes[k].process_arrival_time;
                                     }
                                 }
                                 burst++;
@@ -601,7 +610,7 @@ public class ProjectFrame extends javax.swing.JFrame {
                                     times.add(temp1[burst].get_burst_time());
                                     for (int k = 0; k < processesNo; k++) {
                                         if (processes[k].process_no == done[j].process_no) {
-                                            processes[k].process_waiting_time = current_time - processes[k].process_burst_time-processes[k].process_arrival_time;
+                                            processes[k].process_waiting_time = current_time - processes[k].process_burst_time - processes[k].process_arrival_time;
                                         }
                                     }
                                     arrival++;
@@ -662,16 +671,16 @@ public class ProjectFrame extends javax.swing.JFrame {
                                 times.add(temp2[burst].get_burst_time());
                                 for (int k = 0; k < processesNo; k++) {
                                     if (processes[k].process_no == done[j].process_no) {
-                                        processes[k].process_waiting_time = current_time - processes[k].process_burst_time- processes[k].process_arrival_time;
+                                        processes[k].process_waiting_time = current_time - processes[k].process_burst_time - processes[k].process_arrival_time;
                                     }
                                 }
                                 burst++;
-                           j++;
+                                j++;
                             } else {
                                 while ((arrival < processesNo) && Operations.p_exists(done, temp1[arrival])) {
                                     arrival++;
                                 }
-                                if (!Operations.p_exists(done, temp1[arrival])&& temp1[arrival].get_arrival_time() <= current_time) {
+                                if (!Operations.p_exists(done, temp1[arrival]) && temp1[arrival].get_arrival_time() <= current_time) {
                                     done[j] = temp1[arrival];
                                     processesList.add(done[j]);
 
@@ -679,13 +688,12 @@ public class ProjectFrame extends javax.swing.JFrame {
                                     times.add(temp1[burst].get_burst_time());
                                     for (int k = 0; k < processesNo; k++) {
                                         if (processes[k].process_no == done[j].process_no) {
-                                            processes[k].process_waiting_time = current_time - processes[k].process_burst_time-processes[k].process_arrival_time;
+                                            processes[k].process_waiting_time = current_time - processes[k].process_burst_time - processes[k].process_arrival_time;
                                         }
                                     }
                                     arrival++;
                                     j++;
-                                }
-                                 else {
+                                } else {
 
                                     processesList.add(empty);
                                     timeline++;
@@ -758,7 +766,7 @@ public class ProjectFrame extends javax.swing.JFrame {
                 }
                 break;
 
-                case "priority": {
+                       case "priority": {
                     String pri = prioritiesD.getText().toString();
                     String p_lines[] = pri.split("\\r?\\n");
                     for (int i = 0; i < p_lines.length; i++) {
@@ -805,19 +813,38 @@ public class ProjectFrame extends javax.swing.JFrame {
 
                                     Process x = listl4.get(array_counter);
                                     for (int i = 0; i < processesNo; i++) {
-                                        if (processes[i].process_no == x.process_no) {
-                                            processes[i].process_waiting_time = timer - processes[i].process_burst_time;
+                                         
+                                            if (x.process_no==(processes[i].process_no))
+                                        {
+                                            int finish=times.size();
+                                            int burst=bursts[i];
+                                            int arr=processes[i].process_arrival_time;
+                                            processes[i].process_waiting_time= finish-burst-arr;
+                                            
+                                              for (int z = 0; z < processesNo; z++) {
+                                                  
+                                                    if (listl3.get(z).process_no ==   processes[i].process_no) {
+                                            listl3.get(z).process_waiting_time = processes[i].process_waiting_time;
                                         }
+                                                  
+                                              }
+                                            
+                                  
+                                        }
+                                     
                                     }
+                                    
+                                       
                                     boolean e = listl4.contains(x);
                                     if (e) {
                                         listl4.remove(x);
                                     }
 
                                 }
-                                timer++;
+                         
 
                             }
+                                   timer++;
                         }
                         processesList = listl3;
                     } else {
@@ -845,7 +872,7 @@ public class ProjectFrame extends javax.swing.JFrame {
                                     times.add(temp2[burst].get_burst_time());
                                     for (int k = 0; k < processesNo; k++) {
                                         if (processes[k].process_no == done[i].process_no) {
-                                            processes[k].process_waiting_time = current_time - processes[k].process_burst_time;
+                                            processes[k].process_waiting_time = current_time - processes[k].process_burst_time - processes[k].process_arrival_time;
                                         }
                                     }
                                     burst++;
@@ -859,7 +886,7 @@ public class ProjectFrame extends javax.swing.JFrame {
                                         times.add(temp1[burst].get_burst_time());
                                         for (int k = 0; k < processesNo; k++) {
                                             if (processes[k].process_no == done[i].process_no) {
-                                                processes[k].process_waiting_time = current_time - processes[k].process_burst_time;
+                                                processes[k].process_waiting_time = current_time - processes[k].process_burst_time - processes[k].process_arrival_time;
                                             }
                                         }
                                         arrival++;
@@ -882,7 +909,8 @@ public class ProjectFrame extends javax.swing.JFrame {
                     } else if (nonpreemptive.isSelected()) {
                         p = false;
                     }
-                    if (p) {
+                    if (p) 
+                    {
 
                         int timer = 0;
                         List<Process> listl3 = new LinkedList<Process>();
@@ -902,6 +930,7 @@ public class ProjectFrame extends javax.swing.JFrame {
                         }
 
                         while (timer < total_time) {
+                            
                             int array_counter = 0;
                             while (listl4.get(array_counter).process_arrival_time > timer) {
                                 array_counter++;
@@ -910,14 +939,33 @@ public class ProjectFrame extends javax.swing.JFrame {
                             if (listl4.get(array_counter).process_burst_time > 0) {
                                 listl3.add(listl4.get(array_counter));
                                 listl4.get(array_counter).process_burst_time--;
+                                Operations.sort_list_by_burst_time(listl4);
+                                
                                 times.add(1);
+                                
                                 if (listl4.get(array_counter).process_burst_time == 0) {
 
                                     Process x = listl4.get(array_counter);
-                                    for (int i = 0; i < processesNo; i++) {
-                                        if (processes[i].process_no == x.process_no) {
-                                            processes[i].process_waiting_time = timer - processes[i].process_burst_time;
+                                         for (int i = 0; i < processesNo; i++) {
+                                         
+                                            if (x.process_no==(processes[i].process_no))
+                                        {
+                                            int finish=times.size();
+                                            int burst=bursts[i];
+                                            int arr=processes[i].process_arrival_time;
+                                            processes[i].process_waiting_time= finish-burst-arr;
+                                            
+                                              for (int z = 0; z < processesNo; z++) {
+                                                  
+                                                    if (listl3.get(z).process_no ==   processes[i].process_no) {
+                                            listl3.get(z).process_waiting_time = processes[i].process_waiting_time;
                                         }
+                                                  
+                                              }
+                                            
+                                  
+                                        }
+                                     
                                     }
                                     boolean e = listl4.contains(x);
                                     if (e) {
@@ -956,7 +1004,7 @@ public class ProjectFrame extends javax.swing.JFrame {
                                     times.add(temp2[burst].get_burst_time());
                                     for (int k = 0; k < processesNo; k++) {
                                         if (processes[k].process_no == done[i].process_no) {
-                                            processes[k].process_waiting_time = current_time - processes[k].process_burst_time;
+                                            processes[k].process_waiting_time = current_time - processes[k].process_burst_time - processes[k].process_arrival_time;
                                         }
                                     }
                                     burst++;
@@ -970,7 +1018,7 @@ public class ProjectFrame extends javax.swing.JFrame {
                                         times.add(temp1[burst].get_burst_time());
                                         for (int k = 0; k < processesNo; k++) {
                                             if (processes[k].process_no == done[i].process_no) {
-                                                processes[k].process_waiting_time = current_time - processes[k].process_burst_time;
+                                                processes[k].process_waiting_time = current_time - processes[k].process_burst_time - processes[k].process_arrival_time;
                                             }
                                         }
                                         arrival++;
