@@ -892,22 +892,34 @@ public class ProjectFrame extends javax.swing.JFrame {
                 }
                 break;
 
+               
                 case "round-robin": {
 
                     int quantum = Integer.parseInt(quantumTime.getText().toString());
                     int q = 0;
                     int total_time = 0;
                     processesList = new ArrayList<>();
-                    for (int i = 0; i < processesNo; i++) {
-                        total_time += processes[i].get_burst_time();
-                    }
+//                    Operations.sort_by_arrival_time(processes);
+//                    for (int i = 0; i < processesNo; i++) {
+//                        total_time += processes[i].get_burst_time();
+//                    }
                     Process[] pro = new Process[processesNo];
                     Operations.copy_process(processes, pro);
 
                     int i = 0;
-
-                    while (q < total_time) {
-                        if (pro[i].process_burstRobin > 0) {
+                    int t_now=0;
+                    while (true) {
+                        
+                        boolean fin=true;
+                        for (Process pro1 : pro) {
+                            if (pro1.process_burstRobin > 0) {
+                                fin =false;
+                            }
+                        }
+                        if (fin)
+                            break;
+                        
+                        if (pro[i].process_burstRobin > 0&&pro[i].process_arrival_time<=t_now) {
                             processesList.add(pro[i]);
 
                             if (pro[i].process_burstRobin > quantum) {
@@ -926,6 +938,8 @@ public class ProjectFrame extends javax.swing.JFrame {
                             }
 
                         }
+                      
+                        t_now++;
                         i++;
                         if (i == (processesNo)) {
                             i = 0;
