@@ -518,7 +518,7 @@ public class ProjectFrame extends javax.swing.JFrame {
             processes[i] = new Process(pn, pa, pb);
         }
 
-        if (gaps.isSelected()) {
+       if (gaps.isSelected()) {
             Process empty = new Process(-1, -1, -1);
             switch (schedular) {
                 case "fcfs": {
@@ -552,7 +552,7 @@ public class ProjectFrame extends javax.swing.JFrame {
                 }
                 break;
 
-             
+
                 case "priority":{
 
 
@@ -563,6 +563,83 @@ public class ProjectFrame extends javax.swing.JFrame {
                         int pn = Integer.parseInt(temp);
                         processes[i].set_piority(pn);
                     }
+                      if (preemptive.isSelected()) {
+                        p = true;
+                    } else if (nonpreemptive.isSelected()) {
+                        p = false;
+                    }
+
+                    if (p) {
+
+                        int timer = 1;
+                        List<Process> listl3 = new LinkedList<Process>();
+                        listl3.add(empty);
+                        times.add(1);
+                        Process[] process_by_arrival = new Process[processesNo];
+                        Process[] process_by_burst = new Process[processesNo];
+                        int[] bursts = new int[processesNo];
+
+                        Operations.copy_process(processes, process_by_burst);
+
+                        Operations.sort_by_priority(process_by_burst);
+                        List<Process> listl4 = new LinkedList<Process>(Arrays.asList(process_by_burst));
+                        int total_time = 0;
+                        for (int i = 0; i < processesNo; i++) {
+                            bursts[i] = processes[i].get_burst_time();
+                            total_time += processes[i].get_burst_time();
+                        }
+
+                        while (timer <= total_time) {
+                            int array_counter = 0;
+                            while (listl4.get(array_counter).process_arrival_time > timer) {
+                                array_counter++;
+                            }
+
+                            if (listl4.get(array_counter).process_burst_time > 0) {
+                                listl3.add(listl4.get(array_counter));
+                                listl4.get(array_counter).process_burst_time--;
+                                times.add(1);
+                                if (listl4.get(array_counter).process_burst_time == 0) {
+
+                                    Process x = listl4.get(array_counter);
+                                    for (int i = 0; i < processesNo; i++) {
+                                         
+                                            if (x.process_no==(processes[i].process_no))
+                                        {
+                                            int finish=times.size();
+                                            int burst=bursts[i];
+                                            int arr=processes[i].process_arrival_time;
+                                            processes[i].process_waiting_time= finish-burst-arr;
+                                            
+                                              for (int z = 0; z < processesNo; z++) {
+                                                  
+                                                    if (listl3.get(z).process_no ==   processes[i].process_no) {
+                                            listl3.get(z).process_waiting_time = processes[i].process_waiting_time;
+                                        }
+                                                  
+                                              }
+                                            
+                                  
+                                        }
+                                     
+                                    }
+                                    
+                                       
+                                    boolean e = listl4.contains(x);
+                                    if (e) {
+                                        listl4.remove(x);
+                                    }
+
+                                }
+                         
+
+                            }
+                                   timer++;
+                        }
+                        processesList = listl3;
+                    }
+                    else{
+                    
                     Process[] temp1 = new Process[processesNo];
                     Process[] temp2 = new Process[processesNo];
                     Process[] done = new Process[processesNo];
@@ -642,7 +719,9 @@ public class ProjectFrame extends javax.swing.JFrame {
                     }
 
                 }
+                }
                 break;
+
                 case "SJF": {
 
                     if (preemptive.isSelected()) {
@@ -650,7 +729,81 @@ public class ProjectFrame extends javax.swing.JFrame {
                     } else if (nonpreemptive.isSelected()) {
                         p = false;
                     }
+                    if (p) 
+                    {
 
+                        int timer = 1;
+                        List<Process> listl3 = new LinkedList<Process>();
+                        listl3.add(empty);
+                        times.add(1);
+                        Process[] process_by_arrival = new Process[processesNo];
+                        Process[] process_by_burst = new Process[processesNo];
+                        int[] bursts = new int[processesNo];
+
+                        Operations.copy_process(processes, process_by_burst);
+
+                        Operations.sort_by_burst_time(process_by_burst);
+                        List<Process> listl4 = new LinkedList<Process>(Arrays.asList(process_by_burst));
+                        int total_time = 0;
+                        for (int i = 0; i < processesNo; i++) {
+                            bursts[i] = processes[i].get_burst_time();
+                            total_time += processes[i].get_burst_time();
+                        }
+
+                        while (timer <= total_time) {
+                            
+                            int array_counter = 0;
+                            while (listl4.get(array_counter).process_arrival_time > timer) {
+                                array_counter++;
+                            }
+
+                            if (listl4.get(array_counter).process_burst_time > 0) {
+                                listl3.add(listl4.get(array_counter));
+                                listl4.get(array_counter).process_burst_time--;
+                                Operations.sort_list_by_burst_time(listl4);
+                                
+                                times.add(1);
+                                
+                                if (listl4.get(array_counter).process_burst_time == 0) {
+
+                                    Process x = listl4.get(array_counter);
+                                         for (int i = 0; i < processesNo; i++) {
+                                         
+                                            if (x.process_no==(processes[i].process_no))
+                                        {
+                                            int finish=times.size();
+                                            int burst=bursts[i];
+                                            int arr=processes[i].process_arrival_time;
+                                            processes[i].process_waiting_time= finish-burst-arr;
+                                            
+                                              for (int z = 0; z < processesNo; z++) {
+                                                  
+                                                    if (listl3.get(z).process_no ==   processes[i].process_no) {
+                                            listl3.get(z).process_waiting_time = processes[i].process_waiting_time;
+                                        }
+                                                  
+                                              }
+                                            
+                                  
+                                        }
+                                     
+                                    }
+                                    boolean e = listl4.contains(x);
+                                    if (e) {
+                                        listl4.remove(x);
+                                    }
+
+                                }
+                                timer++;
+
+                            }
+                        }
+                        processesList = listl3;
+
+                    } 
+                    else
+                    {
+                        
                     Process[] temp1 = new Process[processesNo];
                     Process[] temp2 = new Process[processesNo];
                     Process[] done = new Process[processesNo];
@@ -719,11 +872,13 @@ public class ProjectFrame extends javax.swing.JFrame {
                     }
 
                 }
+                }
                 break;
 
             }
 
-        } else {
+        } 
+         else {
             switch (schedular) {
                 case "fcfs": {
                     Operations.sort_by_arrival_time(processes);
